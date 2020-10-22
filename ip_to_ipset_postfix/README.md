@@ -41,7 +41,9 @@ This script:
 You can add ```_arg_ipset_timeout``` parameter to this script. This is a default ipset timout parameter when is ipset created. When you set ```_arg_clear_postfix_log_file``` boolean parameter, postfix log file in ```_arg_log_file_fullpath``` is cleared after script end. Default is not use this parameter (log file is untouched).
 
 ```bash
-ip_to_ipset_postfix/ip_to_ipset_postfix.sh [-l|--log-file-fullpath <arg>] [-n|--ipset-name <arg>] [-i|--ipset-timeout <arg>] [-t|--timeout <arg>] [-a|--attempts <arg>] [-s|--script-log <arg>] [-c|--(no-)clear-postfix-log-file] [-v|--version] [-h|--help]
+./ip_to_ipset_postfix.sh --help
+The general script's help msg
+Usage: ./ip_to_ipset_postfix.sh [-l|--log-file-fullpath <arg>] [-n|--ipset-name <arg>] [-i|--ipset-timeout <arg>] [-t|--timeout <arg>] [-a|--attempts <arg>] [-s|--script-log <arg>] [-c|--(no-)clear-postfix-log-file] [-v|--version] [-h|--help]
         -l, --log-file-fullpath: Full Path To Postfix Log File (default: '/var/log/mail/mail-ipset.log')
         -n, --ipset-name: IPSET Name (default: 'postfix')
         -i, --ipset-timeout: Default timeout (in seconds) for created ipset - default 49 days (default: '4294967')
