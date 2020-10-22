@@ -3,13 +3,15 @@
 
 This script parse postfix mail log in arg ```_arg_log_file_fullpath``` and find all lines with failed SASL login like this:
 
+```
 Oct 22 11:20:56 fw2 postfix/smtpd[2556]: warning: unknown[141.98.10.136]: SASL LOGIN authentication failed: authentication failure
 Oct 22 09:31:34 fw2 postfix/smtpd[8259]: warning: unknown[61.132.87.130]: SASL PLAIN authentication failed: authentication failure
 Oct 22 09:31:34 fw2 postfix/smtpd[8259]: warning: SASL authentication failure: Password verification failed
+```
 
 Than script extract all ip addresess from all such lines, count unique ip addresses and process only ip's that exceed treshold value in ```_arg_attempts```. That ip's are added to netfilter ipset with name ```_arg_ipset_name```.
 
-**Arguments:**
+**Arguments and default values:**
 ```bash
 # THE DEFAULTS INITIALIZATION - OPTIONALS
 _arg_log_file_fullpath="/var/log/mail/mail-ipset.log"
@@ -36,3 +38,4 @@ This script:
  * ip must have 200 failed attempts
  * output log file for this script is ```/var/log/mail/ip_to_ipset_postfix.log``` file
 
+You can add ```_arg_ipset_timeout``` parameter to this script. This is a default ipset timout parameter when is ipset created. When you set ```_arg_clear_postfix_log_file``` boolean parameter, postfix log file in ```_arg_log_file_fullpath``` is cleared after script end. Default is not cleared. 
