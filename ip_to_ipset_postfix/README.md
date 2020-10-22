@@ -38,4 +38,17 @@ This script:
  * ip must have 200 failed attempts
  * output log file for this script is ```/var/log/mail/ip_to_ipset_postfix.log``` file
 
-You can add ```_arg_ipset_timeout``` parameter to this script. This is a default ipset timout parameter when is ipset created. When you set ```_arg_clear_postfix_log_file``` boolean parameter, postfix log file in ```_arg_log_file_fullpath``` is cleared after script end. Default is not cleared. 
+You can add ```_arg_ipset_timeout``` parameter to this script. This is a default ipset timout parameter when is ipset created. When you set ```_arg_clear_postfix_log_file``` boolean parameter, postfix log file in ```_arg_log_file_fullpath``` is cleared after script end. Default is not use this parameter (log file is untouched).
+
+```bash
+ip_to_ipset_postfix/ip_to_ipset_postfix.sh [-l|--log-file-fullpath <arg>] [-n|--ipset-name <arg>] [-i|--ipset-timeout <arg>] [-t|--timeout <arg>] [-a|--attempts <arg>] [-s|--script-log <arg>] [-c|--(no-)clear-postfix-log-file] [-v|--version] [-h|--help]
+        -l, --log-file-fullpath: Full Path To Postfix Log File (default: '/var/log/mail/mail-ipset.log')
+        -n, --ipset-name: IPSET Name (default: 'postfix')
+        -i, --ipset-timeout: Default timeout (in seconds) for created ipset - default 49 days (default: '4294967')
+        -t, --timeout: How long (in seconds) ip address will be in ipset (default: '3600')
+        -a, --attempts: How Many Attempts are Allowed (default: '20')
+        -s, --script-log: Full Path To This Script Log File (default: '/var/log/mail/ip_to_ipset_postfix.log')
+        -c, --clear-postfix-log-file, --no-clear-postfix-log-file: on/off - clear postfix log file (off by default)
+        -v, --version: Prints version
+        -h, --help: Prints help
+```        
