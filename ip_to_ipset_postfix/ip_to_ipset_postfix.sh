@@ -1,5 +1,5 @@
 #!/bin/bash
-version="0.7"
+version="0.8"
 #
 # This is an optional arguments-only example of Argbash potential
 #
@@ -245,6 +245,10 @@ echo "Value of --clear-postfix-log-file: $_arg_clear_postfix_log_file"
 
 
 
+# Start my script
+
+# Array of whitelisted ip addresses
+ip_whitelist=("84.244.68.207" "217.16.180.55")
 
 echo "`date`    ############ SCRIPT BEGIN ############" >> $_arg_script_log
 
@@ -261,6 +265,18 @@ fi
 
 # get bad ip addresses from postfix mail log
 ip_addresses=`cat $_arg_log_file_fullpath | grep SASL | grep failure | awk '{match($0,/[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/); ip = substr($0,RSTART,RLENGTH); print ip}' | sed '/^\s*$/d' | sort | uniq -c | sort -n -r | awk -v ref="$_arg_attempts" '{ if ($1 >= ref) print $2 }'`
+
+# split string into array
+ip_addresses=($ip_addresses)
+
+# remove whitelisted ip addressess from bad ip addressess array
+for index in "${!ip_addresses[@]}"; do
+    for del in "${ip_whitelist[@]}"; do
+        if [[ ${ip_addresses[$index]} == $del ]]; then
+            unset 'ip_addresses[index]'
+        fi
+    done
+done
 
 
 # add ip address to given ipset
