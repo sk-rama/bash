@@ -53,4 +53,12 @@ Usage: ./ip_to_ipset_postfix.sh [-l|--log-file-fullpath <arg>] [-n|--ipset-name 
         -c, --clear-postfix-log-file, --no-clear-postfix-log-file: on/off - clear postfix log file (off by default)
         -v, --version: Prints version
         -h, --help: Prints help
-```        
+``` 
+
+You can start this script from crontab file:
+
+```bash
+*/5 *    * * *   root    ( /etc/rc-local/skripty/ip_to_ipset_postfix/ip_to_ipset_postfix.sh --log-file-fullpath=/var/log/mail/mail-ipset.log --ipset-name=postfix --timeout=3600 --attempts=20 --script-log=/var/log/mail/ip_to_ipset_postfix.log --clear-postfix-log-file > /dev/null 2>&1 )
+
+8 */2    * * *   root    ( /etc/rc-local/skripty/ip_to_ipset_postfix/ip_to_ipset_postfix.sh --log-file-fullpath=/var/log/mail/mail.log --ipset-name=postfix --timeout=3600 --attempts=200 --script-log=/var/log/mail/ip_to_ipset_postfix.log > /dev/null 2>&1 )
+```
