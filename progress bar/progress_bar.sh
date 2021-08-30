@@ -18,10 +18,26 @@ function ProgressBar {
     printf "\rProgress : [${_fill// /#}${_empty// /-}] ${_progress}%% "
 }
 
-for (( c=1; c<=(end=500); c++ ))
-do
-    output=$(echo "aaafdasfwqertfsdafgdfgterqeqrfqsfadsafgads" | nc 127.0.0.1 9999)
-    ProgressBar ${c} ${end} 
-done
+# Variables
+_start=1
 
-echo "program was run $SECONDS seconds"
+# This accounts as the "totalState" variable for the ProgressBar function
+_end=100
+
+# Proof of concept
+for number in $(seq ${_start} ${_end})
+do
+    sleep 0.1
+    ProgressBar ${number} ${_end}
+done
+printf '\nFinished!\n'
+
+
+# real example:
+# for (( start=1; start<=(end=500); start++ ))
+# do
+#     output=$(echo "aaafdasfwqertfsdafgdfgterqeqrfqsfadsafgads" | nc 127.0.0.1 9999)
+#     ProgressBar ${start} ${end} 
+# done
+
+# echo "program was run $SECONDS seconds"
