@@ -280,7 +280,7 @@ done
 
 
 # add ip address to given ipset
-for item in $ip_addresses
+for item in "${ip_addresses[@]}"
 do
     ipset test $_arg_ipset_name $item 2>&1 | sed -e "s/^/$(date)    /" >> $_arg_script_log
     if [ ${PIPESTATUS[0]} -eq 0 ]
