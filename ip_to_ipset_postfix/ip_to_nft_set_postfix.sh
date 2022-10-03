@@ -279,9 +279,8 @@ done
 
 
 # clear log
-# clear log
-if [ $_arg_clear_postfix_log_file = "on" ]
+if [ "$_arg_clear_postfix_log_file" = "on" ] 
 then
-    cat /dev/null > $_arg_log_file_fullpath
-    echo "`date`    Log File $_arg_log_file_fullpath was cleared" >> $_arg_script_log
+    echo "" > $_arg_log_file_fullpath
+    echo "`date`    Log File $_arg_log_file_fullpath was cleared" >> $_arg_script_log 
 fi
