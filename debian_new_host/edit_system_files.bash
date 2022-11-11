@@ -29,7 +29,7 @@ EOF
 sender_canonical_content=$(cat << EOF
 @localhost,,${host_name}@${domain_name}
 @${host_name},,${host_name}@${domain_name}
-@${host_name}.${domain_name},,,${host_name}@${domain_name}\n
+@${host_name}.${domain_name},,${host_name}@${domain_name}\n
 EOF
 )
 
