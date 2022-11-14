@@ -123,3 +123,7 @@ $(cat /dev/null > ${postfix_file_main})
 
 # write content to file
 $(echo "${postfix_main_config}" > "${postfix_file_main}")
+
+
+### restart postfix daemon
+$(systemctl restart postfix.service)
